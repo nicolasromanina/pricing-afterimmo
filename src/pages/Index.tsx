@@ -14,7 +14,7 @@ import { Currency } from '@/lib/currency';
  */
 const Index: React.FC = () => {
   const [currency, setCurrency] = useState<Currency>('EURO');
-  const [projectCount, setProjectCount] = useState(3);
+  const [projectCount, setProjectCount] = useState(1);
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans antialiased selection:bg-[#171717] selection:text-white">
