@@ -27,6 +27,12 @@ const PricingHeader: React.FC<PricingHeaderProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    if (projectCount < 1) {
+      onProjectCountChange(1);
+    }
+  }, [projectCount, onProjectCountChange]);
+
+  useEffect(() => {
     setInputValue(String(projectCount).padStart(2, '0'));
   }, [projectCount]);
 
@@ -61,12 +67,12 @@ const PricingHeader: React.FC<PricingHeaderProps> = ({
       {/* Currency Selector */}
       <div className="flex flex-col items-center gap-3">
         <span className="text-sm font-medium text-[#171717] tracking-wide">Prix en</span>
-        <div className="relative flex items-center bg-[#f5f5f5] rounded-full p-1">
+        <div className="relative flex items-center bg-[#EBEBEB]  py-4 px-1 overflow-hidden">
           {currencies.map((c) => (
             <button
               key={c}
               onClick={() => onCurrencyChange(c)}
-              className={`relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-colors duration-200 ${
+              className={`relative z-10 px-5 py-2 text-sm font-semibold transition-colors duration-200 ${
                 currency === c
                   ? 'text-white'
                   : 'text-[#666666] hover:text-[#171717]'
@@ -93,7 +99,7 @@ const PricingHeader: React.FC<PricingHeaderProps> = ({
       {/* Project Count Stepper */}
       <div className="flex flex-col items-center gap-3">
         <span className="text-sm font-medium text-[#171717] tracking-wide">Nombre de projets</span>
-        <div className="flex items-center bg-[#f5f5f5] rounded-full overflow-hidden">
+        <div className="flex items-center bg-[#EBEBEB] py-4 px-1 overflow-hidden b">
           <button
             onClick={() => onProjectCountChange(Math.max(1, projectCount - 1))}
             disabled={projectCount <= 1}
