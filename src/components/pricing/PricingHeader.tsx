@@ -61,7 +61,7 @@ const PricingHeader: React.FC<PricingHeaderProps> = ({
       {/* Currency Selector */}
       <div className="flex flex-col items-center gap-3">
         <span className="text-sm font-medium text-[#171717] tracking-wide">Prix en</span>
-        <div className="relative flex items-center bg-[#EBEBEB]  py-4 px-1 overflow-hidden">
+        <div className="relative flex items-center bg-[#EBEBEB] rounded-full py-4 px-1 overflow-hidden">
           {currencies.map((c) => (
             <button
               key={c}
