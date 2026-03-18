@@ -1,10 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, X, ArrowRight } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 /**
  * PricingCard — Individual pricing tier card.
- * Displays tier icon, name, subtitle, price, CTA, and feature list.
  * Supports included (blue check) and excluded (red X) features.
  */
 
@@ -80,16 +79,16 @@ const PricingCard: React.FC<PricingCardProps> = ({ tier, index }) => {
         {tier.cta}
       </button>
 
-      {/* Features List */}
+      {/* Features List — fixed icon sizing for all breakpoints */}
       <div className="flex-1 space-y-3">
         {tier.features.map((feature, i) => (
           <div key={i} className="flex items-start gap-3">
             {feature.included ? (
-              <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-md bg-[#3B98F5] flex items-center justify-center">
+              <div className="mt-0.5 w-5 h-5 min-w-[20px] min-h-[20px] rounded-md bg-[#3B98F5] flex items-center justify-center shrink-0">
                 <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
             ) : (
-              <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-md bg-[#FF4B26] flex items-center justify-center">
+              <div className="mt-0.5 w-5 h-5 min-w-[20px] min-h-[20px] rounded-md bg-[#FF4B26] flex items-center justify-center shrink-0">
                 <X className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
             )}

@@ -1,22 +1,28 @@
 import React from 'react';
 import PricingCard, { PricingTierData } from './PricingCard';
 import { Smartphone, FileText, ShieldCheck, Heart, Building2 } from 'lucide-react';
+import { Currency, formatPrice, getCurrencySymbol } from '@/lib/currency';
 
 /**
- * PricingTiers — Grid of the 5 main pricing cards (Starter through Enterprise).
- * First row: 3 cards. Second row: 2 cards + info cards.
+ * PricingTiers — Grid of the 5 main pricing cards.
+ * Prices dynamically converted based on selected currency.
  */
 
-const tiers: PricingTierData[] = [
+interface PricingTiersProps {
+  currency: Currency;
+  projectCount: number;
+}
+
+/** Base prices in EUR */
+const tierBaseData = [
   {
     icon: <Smartphone className="w-5 h-5 text-[#171717]" strokeWidth={2} />,
     name: 'STARTER',
     subtitle: 'Sans onboarding fee',
     description: 'Entrée découverte pour les très petits opérateurs et nouveaux entrants.',
-    price: '0€',
-    priceUnit: '/an',
+    eurPrice: 0,
     cta: 'Commencer',
-    ctaVariant: 'black',
+    ctaVariant: 'black' as const,
     features: [
       { text: '1 projet actif', included: true },
       { text: 'Page projet standard', included: true },
@@ -36,10 +42,9 @@ const tiers: PricingTierData[] = [
     name: 'PUBLIÉ',
     subtitle: 'Onboarding bundlé (inclus)',
     description: 'Base structurée pour construire votre historique de transparence.',
-    price: '900€',
-    priceUnit: '/an',
+    eurPrice: 900,
     cta: 'Choisir Publié',
-    ctaVariant: 'black',
+    ctaVariant: 'black' as const,
     features: [
       { text: '1 projet actif', included: true },
       { text: 'Page projet complète', included: true },
@@ -60,10 +65,9 @@ const tiers: PricingTierData[] = [
     name: 'VÉRIFIÉ',
     subtitle: '+ 600€ onboarding one-shot',
     description: "L'offre principale. Badge Vérifié, leads qualifiés A/B/C et pipeline complet.",
-    price: '3 500€',
-    priceUnit: '/an',
+    eurPrice: 3500,
     cta: 'Choisir Vérifié',
-    ctaVariant: 'black',
+    ctaVariant: 'black' as const,
     recommended: true,
     features: [
       { text: '2 projets actifs', included: true },
@@ -85,10 +89,9 @@ const tiers: PricingTierData[] = [
     name: 'PREMIUM',
     subtitle: '+ 1 500€ onboarding one-shot',
     description: 'Service managé pages, cadence et pilotage mensuel par First Immo.',
-    price: '6 000€',
-    priceUnit: '/an',
+    eurPrice: 6000,
     cta: 'Choisir Premium',
-    ctaVariant: 'red',
+    ctaVariant: 'red' as const,
     features: [
       { text: '3 projets inclus', included: true },
       { text: 'Mise en forme premium des pages (Copy + structure managée)', included: true },
@@ -107,10 +110,9 @@ const tiers: PricingTierData[] = [
     name: 'ENTERPRISE',
     subtitle: 'Onboarding sur devis',
     description: 'Groupes multi-projets, équipes avancées et intégrations sur mesure.',
-    price: 'SUR DEVIS',
-    priceUnit: '',
+    eurPrice: null, // Sur devis
     cta: 'Nous contacter',
-    ctaVariant: 'black',
+    ctaVariant: 'black' as const,
     features: [
       { text: 'Projets illimités', included: true },
       { text: 'Multi-équipes / multi-rôles', included: true },
@@ -126,7 +128,37 @@ const tiers: PricingTierData[] = [
   },
 ];
 
-const PricingTiers: React.FC = () => {
+const PricingTiers: React.FC<PricingTiersProps> = ({ currency, projectCount }) => {
+  const symbol = getCurrencySymbol(currency);
+
+  const tiers: PricingTierData[] = tierBaseData.map((t) => {
+    let price: string;
+    let priceUnit: string;
+    if (t.eurPrice === null) {
+      price = 'SUR DEVIS';
+      priceUnit = '';
+    } else if (t.eurPrice === 0) {
+      price = `0${symbol}`;
+      priceUnit = '/an';
+    } else {
+      price = formatPrice(t.eurPrice * projectCount, currency, '');
+      priceUnit = projectCount > 1 ? `/an (${projectCount} projets)` : '/an';
+    }
+
+    return {
+      icon: t.icon,
+      name: t.name,
+      subtitle: t.subtitle,
+      description: t.description,
+      price,
+      priceUnit,
+      cta: t.cta,
+      ctaVariant: t.ctaVariant,
+      features: t.features,
+      recommended: t.recommended,
+    };
+  });
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6">
       {/* First row: 3 cards */}
@@ -140,7 +172,7 @@ const PricingTiers: React.FC = () => {
         {tiers.slice(3, 5).map((tier, i) => (
           <PricingCard key={tier.name} tier={tier} index={i + 3} />
         ))}
-        {/* Info cards on the right */}
+        {/* Info cards */}
         <div className="flex flex-col gap-4">
           <InfoCard
             icon={<ShieldCheck className="w-5 h-5 text-[#FF4B26]" />}
@@ -163,7 +195,6 @@ const PricingTiers: React.FC = () => {
   );
 };
 
-/** Small info card shown beside Premium/Enterprise */
 const InfoCard: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({
   icon,
   title,

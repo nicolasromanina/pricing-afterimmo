@@ -1,18 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, ArrowRight, ShieldCheck, Shield } from 'lucide-react';
+import { Currency, formatPrice, getCurrencySymbol } from '@/lib/currency';
 
 /**
  * HybridOption — "Option Hybride - Success Fee" section.
- * Shows the hybrid Vérifié plan and economic simulation comparison.
+ * Prices converted based on selected currency.
  */
 
-const HybridOption: React.FC = () => {
+interface HybridOptionProps {
+  currency: Currency;
+}
+
+const HybridOption: React.FC<HybridOptionProps> = ({ currency }) => {
+  const sym = getCurrencySymbol(currency);
+  const base = formatPrice(1800, currency, '');
+  const perLead = formatPrice(150, currency, '');
+  const cap = formatPrice(3000, currency, '');
+  const stdPrice = formatPrice(5000, currency, '');
+
+  // Simulation values
+  const sim3 = `${base} + ${formatPrice(5400, currency, '')} = ${formatPrice(7200, currency, '')}`;
+  const sim5 = `${base} + ${formatPrice(9000, currency, '')} = plafond ${formatPrice(4800, currency, '')}`;
+  const sim10 = `Plafonné à ${formatPrice(4800, currency, '')}`;
+  const sim0 = `${base} seulement`;
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24">
-      {/* Top section: description + hybrid card */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        {/* Left: description */}
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-[#171717] tracking-tight mb-4">
             Option Hybride - Success Fee
@@ -22,7 +37,6 @@ const HybridOption: React.FC = () => {
             Le promoteur paie moins à l'entrée mais First Immo est aligné sur son succès.
           </p>
 
-          {/* Hybrid card */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,21 +50,19 @@ const HybridOption: React.FC = () => {
               VÉRIFIÉ HYBRIDE
             </h3>
             <p className="text-lg font-bold text-[#171717] mb-3">
-              1 800€ / an + 150€ par lead qualifié A livré
+              {base} / an + {perLead} par lead qualifié A livré
             </p>
             <p className="text-xs text-[#888888] leading-relaxed">
-              Même fonctionnalités que le plan Vérifié. Le coût variable est plafonné à 3 000€/an maximum.
+              Même fonctionnalités que le plan Vérifié. Le coût variable est plafonné à {cap}/an maximum.
             </p>
           </motion.div>
         </div>
 
-        {/* Right: Economic simulation */}
         <div>
           <h3 className="text-xl font-bold text-[#171717] mb-6">
             Simulation économique pour le promoteur
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {/* Vérifié Hybride simulation */}
             <div className="bg-white rounded-2xl p-5 shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_2px_8px_-2px_rgba(0,0,0,0.06)]">
               <div className="flex items-center gap-2 mb-4">
                 <ShieldCheck className="w-5 h-5 text-[#3B98F5]" />
@@ -59,13 +71,13 @@ const HybridOption: React.FC = () => {
               <p className="text-xs font-semibold text-[#171717] mb-3">Coût total annuel Hybride :</p>
               <div className="space-y-2.5">
                 {[
-                  { leads: '3 leads/mois', calc: '1 800 + 5 400 = 7 200€' },
-                  { leads: '5 leads/mois', calc: '1 800 + 9 000 = plafond 4 800€' },
-                  { leads: '10 leads/mois', calc: 'Plafonné à 4 800€' },
-                  { leads: '0 lead A', calc: '1 800€ seulement' },
+                  { leads: '3 leads/mois', calc: sim3 },
+                  { leads: '5 leads/mois', calc: sim5 },
+                  { leads: '10 leads/mois', calc: sim10 },
+                  { leads: '0 lead A', calc: sim0 },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <ArrowRight className="w-4 h-4 text-[#3B98F5] mt-0.5 flex-shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-[#3B98F5] mt-0.5 shrink-0" />
                     <div>
                       <p className="text-xs font-semibold text-[#171717]">{item.leads}</p>
                       <p className="text-[11px] text-[#888]">{item.calc}</p>
@@ -75,13 +87,12 @@ const HybridOption: React.FC = () => {
               </div>
             </div>
 
-            {/* Vérifié Standard comparison */}
             <div className="bg-white rounded-2xl p-5 shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_2px_8px_-2px_rgba(0,0,0,0.06)]">
               <div className="flex items-center gap-2 mb-4">
                 <Shield className="w-5 h-5 text-[#FF4B26]" />
                 <span className="text-sm font-bold text-[#FF4B26] uppercase tracking-wide">Vérifié Standard</span>
               </div>
-              <p className="text-xs font-semibold text-[#171717] mb-3">Vérifié Standard (5 000€)</p>
+              <p className="text-xs font-semibold text-[#171717] mb-3">Vérifié Standard ({stdPrice})</p>
               <div className="space-y-2.5">
                 {[
                   'Plus cher si bons résultats',
@@ -90,7 +101,7 @@ const HybridOption: React.FC = () => {
                   'Risque minimal',
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <ArrowRight className="w-4 h-4 text-[#FF4B26] mt-0.5 flex-shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-[#FF4B26] mt-0.5 shrink-0" />
                     <p className="text-xs text-[#555]">{item}</p>
                   </div>
                 ))}

@@ -6,42 +6,30 @@ import AddOnFeatures from '@/components/pricing/AddOnFeatures';
 import MonthlyRetainers from '@/components/pricing/MonthlyRetainers';
 import HybridOption from '@/components/pricing/HybridOption';
 import FoundingOffer from '@/components/pricing/FoundingOffer';
+import { Currency } from '@/lib/currency';
 
 /**
  * Index — Main pricing landing page.
  * Assembles all pricing sections in order matching the design.
  */
 const Index: React.FC = () => {
-  const [currency, setCurrency] = useState<'USD' | 'EURO' | 'FCA'>('EURO');
+  const [currency, setCurrency] = useState<Currency>('EURO');
   const [projectCount, setProjectCount] = useState(3);
 
   return (
     <div className="min-h-screen bg-[#fafafa] font-sans antialiased selection:bg-[#171717] selection:text-white">
-      {/* Header controls */}
       <PricingHeader
         currency={currency}
         onCurrencyChange={setCurrency}
         projectCount={projectCount}
         onProjectCountChange={setProjectCount}
       />
-
-      {/* Main pricing cards */}
-      <PricingTiers />
-
-      {/* Detailed comparison table */}
-      <ComparisonTable />
-
-      {/* Add-on features */}
-      <AddOnFeatures />
-
-      {/* Monthly retainers */}
-      <MonthlyRetainers />
-
-      {/* Hybrid option */}
-      <HybridOption />
-
-      {/* Founding offer */}
-      <FoundingOffer />
+      <PricingTiers currency={currency} projectCount={projectCount} />
+      <ComparisonTable currency={currency} />
+      <AddOnFeatures currency={currency} />
+      <MonthlyRetainers currency={currency} />
+      <HybridOption currency={currency} />
+      <FoundingOffer currency={currency} />
     </div>
   );
 };
