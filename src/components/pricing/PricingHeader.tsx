@@ -81,11 +81,10 @@ const PricingHeader: React.FC<PricingHeaderProps> = ({
             layout
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             style={{
-              left: `${currencies.indexOf(currency) * (100 / 3)}%`,
-              width: `${100 / 3}%`,
-              marginLeft: 4,
-              marginRight: 4,
-              width: `calc(${100 / 3}% - 2px)`,
+              left: `calc(${currencies.indexOf(currency) * (100 / 3)}% + 2px)`,
+              width: `calc(${100 / 3}% - 4px)`,
+              marginLeft: 0,
+              marginRight: 0,
             }}
           />
         </div>
