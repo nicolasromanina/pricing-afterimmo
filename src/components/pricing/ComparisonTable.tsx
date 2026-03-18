@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Check, X, Smartphone, FileText, ShieldCheck, Heart, Building2 } from 'lucide-react';
 import { Currency, formatPrice } from '@/lib/currency';
-
+import StarterIconPricing from '@/assets/starter-icon-pricing.png';
+import PublieIconPricing from '@/assets/publie-icon-pricing.png';
+import VerifieIconPricing from '@/assets/verifie-icon-pricing.png';
+import PremiumIconPricing from '@/assets/premium-icon-pring.png';
+import EntrepriseIconPricing from '@/assets/entreprise-icon-pricing.png';
 /**
  * ComparisonTable — Detailed feature comparison across all 5 tiers.
  * Collapsible category sections with a grid layout.
@@ -19,20 +23,20 @@ interface ComparisonCategory {
 }
 
 const plans = [
-  { name: 'STARTER', icon: <Smartphone className="w-4 h-4" />, cta: 'Commencer', ctaBg: 'bg-[#171717]' },
-  { name: 'PUBLIÉ', icon: <FileText className="w-4 h-4" />, cta: 'Choisir Publié', ctaBg: 'bg-[#171717]' },
-  { name: 'VÉRIFIÉ', icon: <ShieldCheck className="w-4 h-4" />, cta: 'Choisir Vérifié', ctaBg: 'bg-[#171717]' },
-  { name: 'PREMIUM', icon: <Heart className="w-4 h-4 text-[#FF4B26]" />, cta: 'Choisir Premium', ctaBg: 'bg-[#FF4B26]' },
-  { name: 'ENTERPRISE', icon: <Building2 className="w-4 h-4" />, cta: 'Nous contacter', ctaBg: 'bg-[#171717]' },
+  { name: 'STARTER', icon: <img src={StarterIconPricing} alt="Starter" className="" />, cta: 'Commencer', ctaBg: 'bg-[#171717]' },
+  { name: 'PUBLIÉ', icon: <img src={PublieIconPricing} alt="Publié" className="" />, cta: 'Choisir Publié', ctaBg: 'bg-[#171717]' },
+  { name: 'VÉRIFIÉ', icon: <img src={VerifieIconPricing} alt="Vérifié" className="" />, cta: 'Choisir Vérifié', ctaBg: 'bg-[#171717]' },
+  { name: 'PREMIUM', icon: <img src={PremiumIconPricing} alt="Premium" className="" />, cta: 'Choisir Premium', ctaBg: 'bg-[#FF4B26]' },
+  { name: 'ENTERPRISE', icon: <img src={EntrepriseIconPricing} alt="Enterprise" className="" />, cta: 'Nous contacter', ctaBg: 'bg-[#171717]' },
 ];
 
 /** Base EUR prices for bottom row */
 const basePrices = [
-  { eurPrice: 0, icon: <Smartphone className="w-4 h-4" />, name: 'STARTER' },
-  { eurPrice: 900, icon: <FileText className="w-4 h-4" />, name: 'PUBLIÉ' },
-  { eurPrice: 3500, icon: <ShieldCheck className="w-4 h-4" />, name: 'VÉRIFIÉ' },
-  { eurPrice: 6000, icon: <Heart className="w-4 h-4 text-[#FF4B26]" />, name: 'PREMIUM' },
-  { eurPrice: null, icon: <Building2 className="w-4 h-4" />, name: 'ENTERPRISE' },
+  { eurPrice: 0, icon: <img src={StarterIconPricing} alt="Starter" className="" />, name: 'STARTER' },
+  { eurPrice: 900, icon: <img src={PublieIconPricing} alt="Publié" className="" />, name: 'PUBLIÉ' },
+  { eurPrice: 3500, icon: <img src={VerifieIconPricing} alt="Vérifié" className="" />, name: 'VÉRIFIÉ' },
+  { eurPrice: 6000, icon: <img src={PremiumIconPricing} alt="Premium" className="" />, name: 'PREMIUM' },
+  { eurPrice: null, icon: <img src={EntrepriseIconPricing} alt="Enterprise" className="" />, name: 'ENTERPRISE' },
 ];
 
 const categories: ComparisonCategory[] = [

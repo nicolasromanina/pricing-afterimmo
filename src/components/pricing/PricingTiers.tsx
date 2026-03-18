@@ -1,7 +1,17 @@
 import React from 'react';
 import PricingCard, { PricingTierData } from './PricingCard';
-import { Smartphone, FileText, ShieldCheck, Heart, Building2 } from 'lucide-react';
+import { FileText, ShieldCheck } from 'lucide-react';
 import { Currency, formatPrice, getCurrencySymbol } from '@/lib/currency';
+
+import StarterIconPricing from '@/assets/starter-icon-pricing.png';
+import PublieIconPricing from '@/assets/publie-icon-pricing.png';
+import VerifieIconPricing from '@/assets/verifie-icon-pricing.png';
+import PremiumIconPricing from '@/assets/premium-icon-pring.png';
+import EntrepriseIconPricing from '@/assets/entreprise-icon-pricing.png';
+
+import QualifiedLeadPricing from '@/assets/qualified-lead-pricing.png';
+import ConfianceVisiblePricing from '@/assets/confiance-pricing.png';
+import DistributionPricing from '@/assets/distribution-pricing.png';
 
 /**
  * PricingTiers — Grid of the 5 main pricing cards.
@@ -16,7 +26,13 @@ interface PricingTiersProps {
 /** Base prices in EUR */
 const tierBaseData = [
   {
-    icon: <Smartphone className="w-5 h-5 text-[#171717]" strokeWidth={2} />,
+    icon: (
+      <img
+        src={StarterIconPricing}
+        alt="Starter"
+        className=""
+      />
+    ),
     name: 'STARTER',
     subtitle: 'Sans onboarding fee',
     description: 'Entrée découverte pour les très petits opérateurs et nouveaux entrants.',
@@ -38,7 +54,13 @@ const tierBaseData = [
     ],
   },
   {
-    icon: <FileText className="w-5 h-5 text-[#171717]" strokeWidth={2} />,
+    icon: (
+      <img
+        src={PublieIconPricing}
+        alt="Publié"
+        className=""
+      />
+    ),
     name: 'PUBLIÉ',
     subtitle: 'Onboarding bundlé (inclus)',
     description: 'Base structurée pour construire votre historique de transparence.',
@@ -61,7 +83,13 @@ const tierBaseData = [
     ],
   },
   {
-    icon: <ShieldCheck className="w-5 h-5 text-[#171717]" strokeWidth={2} />,
+    icon: (
+      <img
+        src={VerifieIconPricing}
+        alt="Vérifié"
+        className=""
+      />
+    ),
     name: 'VÉRIFIÉ',
     subtitle: '+ 600€ onboarding one-shot',
     description: "L'offre principale. Badge Vérifié, leads qualifiés A/B/C et pipeline complet.",
@@ -85,7 +113,13 @@ const tierBaseData = [
     ],
   },
   {
-    icon: <Heart className="w-5 h-5 text-[#FF4B26]" strokeWidth={2} />,
+    icon: (
+      <img
+        src={PremiumIconPricing}
+        alt="Premium"
+        className=""
+      />
+    ),
     name: 'PREMIUM',
     subtitle: '+ 1 500€ onboarding one-shot',
     description: 'Service managé pages, cadence et pilotage mensuel par First Immo.',
@@ -106,7 +140,13 @@ const tierBaseData = [
     ],
   },
   {
-    icon: <Building2 className="w-5 h-5 text-[#171717]" strokeWidth={2} />,
+    icon: (
+      <img
+        src={EntrepriseIconPricing}
+        alt="Entreprise"
+        className=""
+      />
+    ),
     name: 'ENTERPRISE',
     subtitle: 'Onboarding sur devis',
     description: 'Groupes multi-projets, équipes avancées et intégrations sur mesure.',
@@ -175,17 +215,35 @@ const PricingTiers: React.FC<PricingTiersProps> = ({ currency, projectCount }) =
         {/* Info cards */}
         <div className="flex flex-col gap-4">
           <InfoCard
-            icon={<ShieldCheck className="w-5 h-5 text-[#FF4B26]" />}
+            icon={(
+              <img
+                src={ConfianceVisiblePricing}
+                alt="Confiance visible"
+                className=""
+              />
+            )}
             title="Confiance visible"
             description="Score /100, badges, historique d'avancement, preuves documentaires."
           />
           <InfoCard
-            icon={<span className="text-[#3B98F5] text-lg">👤</span>}
+            icon={(
+              <img
+                src={QualifiedLeadPricing}
+                alt="Leads qualifiés"
+                className=""
+              />
+            )}
             title="Leads qualifiés"
             description="Des acheteurs avec budget, délai, type de bien et intention réelle."
           />
           <InfoCard
-            icon={<FileText className="w-5 h-5 text-[#3B98F5]" />}
+            icon={(
+              <img
+                src={DistributionPricing}
+                alt="Distribution méritocratique"
+                className=""
+              />
+            )}
             title="Distribution méritocratique"
             description="Le ranking est lié à la discipline, pas au budget pub."
           />

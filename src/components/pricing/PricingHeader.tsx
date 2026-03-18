@@ -57,7 +57,7 @@ const PricingHeader: React.FC<PricingHeaderProps> = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 py-8">
+    <div className="flex flex-col sm:flex-row items-center justify-center mr-20 gap-8 sm:gap-16 py-8">
       {/* Currency Selector */}
       <div className="flex flex-col items-center gap-3">
         <span className="text-sm font-medium text-[#171717] tracking-wide">Prix en</span>

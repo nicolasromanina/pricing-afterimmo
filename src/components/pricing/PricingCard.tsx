@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, X } from 'lucide-react';
 
+
 /**
  * PricingCard — Individual pricing tier card.
  * Supports included (blue check) and excluded (red X) features.

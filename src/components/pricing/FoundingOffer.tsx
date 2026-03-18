@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, ShieldCheck } from 'lucide-react';
+import { ArrowRight} from 'lucide-react';
 import { Currency, formatPrice } from '@/lib/currency';
+
+import FoundingBlue from '@/assets/founding-blue.png';
+import FoundingRed from '@/assets/founding-red.png';
 
 /**
  * FoundingOffer — "Offre Founding Lancement Côte d'Ivoire" section.
@@ -42,9 +45,8 @@ const FoundingOffer: React.FC<FoundingOfferProps> = ({ currency }) => {
           viewport={{ once: true }}
           className="bg-white rounded-2xl p-8 shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_4px_16px_-4px_rgba(0,0,0,0.08)]"
         >
-          <div className="w-10 h-10 rounded-xl bg-[#3B98F5] flex items-center justify-center mb-4">
-            <FileText className="w-5 h-5 text-white" />
-          </div>
+         
+          <img src={FoundingBlue} alt="CADENCE MANAGER" className="rounded-xl flex items-center justify-center mb-4" />
           <h4 className="text-lg font-bold text-[#3B98F5] mb-1">Founding Publié</h4>
           <div className="w-full h-0.5 bg-[#3B98F5] mb-5" />
           <div className="flex items-baseline gap-2 mb-1 flex-wrap">
@@ -76,9 +78,9 @@ const FoundingOffer: React.FC<FoundingOfferProps> = ({ currency }) => {
           transition={{ delay: 0.1 }}
           className="bg-white rounded-2xl p-8 shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_4px_16px_-4px_rgba(0,0,0,0.08)]"
         >
-          <div className="w-10 h-10 rounded-xl bg-[#FF4B26] flex items-center justify-center mb-4">
-            <ShieldCheck className="w-5 h-5 text-white" />
-          </div>
+         
+          <img src={FoundingRed} alt="CADENCE MANAGER" className="rounded-xl flex items-center justify-center mb-4" />
+
           <h4 className="text-lg font-bold text-[#FF4B26] mb-1">Founding Vérifié</h4>
           <div className="w-full h-0.5 bg-[#FF4B26] mb-5" />
           <div className="flex items-baseline gap-2 mb-1 flex-wrap">

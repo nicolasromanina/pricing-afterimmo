@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 import { Monitor, FileCheck, Database, Mail, RotateCcw, MessageCircle, FileEdit, Users } from 'lucide-react';
 import { Currency } from '@/lib/currency';
 
+import f1Pricing from '@/assets/f1-pricing.png';
+import f2Pricing from '@/assets/f2-pricing.png';
+import f3Pricing from '@/assets/f3-pricing.png';
+import f4Pricing from '@/assets/f4-pricing.png';
+import f5Pricing from '@/assets/f5-pricing.png';
+import f6Pricing from '@/assets/f6-pricing.png';
+import f7Pricing from '@/assets/f7-pricing.png';
+import f8Pricing from '@/assets/f8-pricing.png';
 /**
  * AddOnFeatures — "Fonctionnalités" section showing add-on features.
  * Currency prop accepted for future price display.
@@ -17,14 +25,14 @@ interface AddOn {
 }
 
 const addOns: AddOn[] = [
-  { icon: <Monitor className="w-5 h-5 text-[#3B98F5]" />, iconBg: 'bg-[#E8F4FD]', title: 'Projet supplémentaire (Publié)', description: '1 projet additionnel sans priorité', price: 'À DÉFINIR / AN' },
-  { icon: <FileCheck className="w-5 h-5 text-[#3B98F5]" />, iconBg: 'bg-[#E8F4FD]', title: 'Projet supplémentaire (Vérifié)', description: '+800€ onboarding par projet sup', price: 'À DÉFINIR / AN' },
-  { icon: <Database className="w-5 h-5 text-[#FF9500]" />, iconBg: 'bg-[#FFF3E0]', title: 'Data Room Premium', description: 'Partage sécurisé docs acheteurs diaspora', price: 'À DÉFINIR / AN' },
-  { icon: <Mail className="w-5 h-5 text-[#3B98F5]" />, iconBg: 'bg-[#E8F4FD]', title: 'Spotlight Newsletter', description: 'Mise en avant email à toute la base acheteurs', price: 'À DÉFINIR / ONE-SHOT' },
-  { icon: <RotateCcw className="w-5 h-5 text-[#3B98F5]" />, iconBg: 'bg-[#E8F4FD]', title: 'Homepage Rotation 30 jours', description: 'Visibilité max, rotation homepage', price: 'À DÉFINIR / AN' },
-  { icon: <MessageCircle className="w-5 h-5 text-[#25D366]" />, iconBg: 'bg-[#E8F8F0]', title: 'WhatsApp Pack', description: 'Templates relances + gestion objections diaspora', price: 'À DÉFINIR / AN' },
-  { icon: <FileEdit className="w-5 h-5 text-[#3B98F5]" />, iconBg: 'bg-[#E8F4FD]', title: 'Pack Lancement Projet', description: 'Rédaction page projet + optimisation CTA', price: 'À DÉFINIR / AN' },
-  { icon: <Users className="w-5 h-5 text-[#3B98F5]" />, iconBg: 'bg-[#E8F4FD]', title: 'Formation Équipe', description: 'Onboarding équipe commerciale (visio 2h)', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f1Pricing} alt="Projet supplémentaire (Publié)" className="" />, iconBg: 'bg-[#E8F4FD]', title: 'Projet supplémentaire (Publié)', description: '1 projet additionnel sans priorité', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f2Pricing} alt="Projet supplémentaire (Vérifié)" className="" />, iconBg: 'bg-[#E8F4FD]', title: 'Projet supplémentaire (Vérifié)', description: '+800€ onboarding par projet sup', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f3Pricing} alt="Data Room Premium" className="" />, iconBg: 'bg-[#FFF3E0]', title: 'Data Room Premium', description: 'Partage sécurisé docs acheteurs diaspora', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f4Pricing} alt="Spotlight Newsletter" className="" />, iconBg: 'bg-[#E8F4FD]', title: 'Spotlight Newsletter', description: 'Mise en avant email à toute la base acheteurs', price: 'À DÉFINIR / ONE-SHOT' },
+  { icon: <img src={f5Pricing} alt="Homepage Rotation 30 jours" className="" />, iconBg: 'bg-[#E8F4FD]', title: 'Homepage Rotation 30 jours', description: 'Visibilité max, rotation homepage', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f6Pricing} alt="WhatsApp Pack" className="" />, iconBg: 'bg-[#E8F8F0]', title: 'WhatsApp Pack', description: 'Templates relances + gestion objections diaspora', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f7Pricing} alt="Pack Lancement Projet" className="" />, iconBg: 'bg-[#E8F4FD]', title: 'Pack Lancement Projet', description: 'Rédaction page projet + optimisation CTA', price: 'À DÉFINIR / AN' },
+  { icon: <img src={f8Pricing} alt="Formation Équipe" className="" />, iconBg: 'bg-[#E8F4FD]', title: 'Formation Équipe', description: 'Onboarding équipe commerciale (visio 2h)', price: 'À DÉFINIR / AN' },
 ];
 
 interface AddOnFeaturesProps {
