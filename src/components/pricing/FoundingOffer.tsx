@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText, ShieldCheck } from 'lucide-react';
+import { Currency, formatPrice } from '@/lib/currency';
 
 /**
  * FoundingOffer — "Offre Founding Lancement Côte d'Ivoire" section.
- * Two special founding plans: Founding Publié and Founding Vérifié.
+ * Prices converted based on selected currency.
  */
 
 const conditions = [
@@ -15,7 +16,11 @@ const conditions = [
   'Pas de tarif Founding sur renouvellement',
 ];
 
-const FoundingOffer: React.FC = () => {
+interface FoundingOfferProps {
+  currency: Currency;
+}
+
+const FoundingOffer: React.FC<FoundingOfferProps> = ({ currency }) => {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16 lg:py-24">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-[#171717] tracking-tight mb-2">
@@ -42,10 +47,12 @@ const FoundingOffer: React.FC = () => {
           </div>
           <h4 className="text-lg font-bold text-[#3B98F5] mb-1">Founding Publié</h4>
           <div className="w-full h-0.5 bg-[#3B98F5] mb-5" />
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl font-extrabold text-[#171717] tabular-nums">600€</span>
+          <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span className="text-3xl font-extrabold text-[#171717] tabular-nums">
+              {formatPrice(600, currency, '')}
+            </span>
             <span className="text-sm text-[#999]">/an</span>
-            <span className="text-sm text-[#999] ml-2">(au lieu de 1 500€)</span>
+            <span className="text-sm text-[#999] ml-2">(au lieu de {formatPrice(1500, currency, '')})</span>
           </div>
           <p className="text-xs text-[#888] mb-6 leading-relaxed">
             Onboarding light inclus. Valable en 1ère année uniquement.
@@ -54,7 +61,7 @@ const FoundingOffer: React.FC = () => {
           <div className="space-y-2.5">
             {conditions.map((c, i) => (
               <div key={i} className="flex items-start gap-2">
-                <ArrowRight className="w-4 h-4 text-[#3B98F5] mt-0.5 flex-shrink-0" />
+                <ArrowRight className="w-4 h-4 text-[#3B98F5] mt-0.5 shrink-0" />
                 <span className="text-xs text-[#555] leading-snug">{c}</span>
               </div>
             ))}
@@ -74,19 +81,21 @@ const FoundingOffer: React.FC = () => {
           </div>
           <h4 className="text-lg font-bold text-[#FF4B26] mb-1">Founding Vérifié</h4>
           <div className="w-full h-0.5 bg-[#FF4B26] mb-5" />
-          <div className="flex items-baseline gap-2 mb-1">
-            <span className="text-3xl font-extrabold text-[#171717] tabular-nums">2 800€</span>
+          <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+            <span className="text-3xl font-extrabold text-[#171717] tabular-nums">
+              {formatPrice(2800, currency, '')}
+            </span>
             <span className="text-sm text-[#999]">/an</span>
           </div>
-          <p className="text-xs text-[#FF4B26] font-bold mb-1">+800€ setup (au lieu de 5 000€)</p>
+          <p className="text-xs text-[#FF4B26] font-bold mb-1">+{formatPrice(800, currency, '')} setup (au lieu de {formatPrice(5000, currency, '')})</p>
           <p className="text-xs text-[#888] mb-6 leading-relaxed">
-            Renouvelé à 4 200€ an 2. Accès prioritaire dès J+1.
+            Renouvelé à {formatPrice(4200, currency, '')} an 2. Accès prioritaire dès J+1.
           </p>
           <p className="text-xs font-bold text-[#171717] mb-3">Conditions pour les deux offres Founding</p>
           <div className="space-y-2.5">
             {conditions.map((c, i) => (
               <div key={i} className="flex items-start gap-2">
-                <ArrowRight className="w-4 h-4 text-[#FF4B26] mt-0.5 flex-shrink-0" />
+                <ArrowRight className="w-4 h-4 text-[#FF4B26] mt-0.5 shrink-0" />
                 <span className="text-xs text-[#555] leading-snug">{c}</span>
               </div>
             ))}
